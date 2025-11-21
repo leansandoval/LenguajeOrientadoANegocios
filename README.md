@@ -1,4 +1,4 @@
-# LOAN_C2
+# Lenguaje Orientado a Negocios
 Repositorio de la materia Lenguaje orientado a negocios 2025-2C
 
 # Sistema de Gestión de Biblioteca Universitaria
@@ -108,3 +108,4 @@ Permite la gestión de usuarios, libros, préstamos y reportes, siguiendo una ar
 - **JCL:** `.jcl`  
 - **SQL:** `.sql`  
 - **Reportes:** `.txt` o `.csv` según formato  
+
