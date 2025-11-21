@@ -1,36 +1,31 @@
 
-# 📘 Guía de Ejecución CICS — Proyecto COBOL + MAPSET
+# 📘 Guía Completa de Ejecución CICS — Proyecto COBOL + MAPSET + VSAM
 
-Este repositorio contiene los JCL, fuentes COBOL y definiciones necesarias para compilar y ejecutar un programa COBOL con CICS, utilizando un MAPSET previamente generado.  
-El objetivo es documentar los pasos para:
+Este repositorio contiene los JCL, fuentes COBOL, definiciones CICS y archivos necesarios para compilar y ejecutar un programa COBOL con CICS, incluyendo:
 
-1. Compilar el mapa (MAPSET)  
-2. Compilar el programa COBOL que usa el mapa  
-3. Definir los recursos en CICS  
-4. Habilitar la librería `.LOAD`  
-5. Ejecutar la transacción en un entorno CICS
+- MAPSET
+- Programa COBOL
+- Transacción CICS
+- Librería LOAD
+- Archivo VSAM
+- Menú interactivo desde terminal 3270
 
----
-
-## 📂 Contenido
-
-- **JCL de compilación**
-  - `TESTC` → compila el MAPSET  
-  - `CMPTEST` → compila el programa COBOL  
-- **Librerías de salida `.LOAD`**
-  - `TESTC` (mapa compilado)  
-  - `TESTME` (programa COBOL compilado)  
-- **Guía paso a paso para ejecutar en CICS**
+Esta guía combina información de ambos documentos provistos por el estudiante.
 
 ---
 
-# 🚀 Pasos para Ejecutar el Programa en CICS
+# 📂 Contenido
 
-Los siguientes pasos están basados en la guía provista en el PDF original.
+- Compilación del MAPSET y programa COBOL
+- Configuración completa en CICS
+- Definición del archivo VSAM
+- Ejecución de la transacción
+- Visualización del menú y lectura del VSAM
+- Solución de errores comunes
 
 ---
 
-## 1️⃣ Compilar MAPSET y Programa COBOL
+# 🚀 1. Compilar MAPSET y Programa COBOL
 
 1. Ejecutar el JCL:
 
@@ -44,48 +39,46 @@ Los siguientes pasos están basados en la guía provista en el PDF original.
    CMPTEST -> compila el programa COBOL que usa el mapa
    ```
 
-Al finalizar, deberías tener **dos miembros en la librería `.LOAD`**:
+Después de esta etapa deben existir dos miembros en la librería `.LOAD`:
 
 - `TESTC`  → MAPSET compilado  
 - `TESTME` → PROGRAMA COBOL compilado  
 
 ---
 
-## 2️⃣ Ingresar a CICS
+# 🖥 2. Ingresar a CICS
 
-1. Abrir una terminal 3270  
-2. Ejecutar:
+1. Abrir una terminal 3270.  
+2. Escribir:
 
    ```
    CICS
    ```
 
-   *(sin loguearse)*
-
-3. Presionar **TAB** para posicionarse en el campo de escritura  
-4. Cargar la **ruta completa a tu librería `.LOAD`**
+3. Presionar **TAB** y cargar la ruta completa a tu librería `.LOAD`.
 
 ---
 
-# 🏗 3️⃣ Definir Recursos en CICS
+# 🏗 3. Definir Recursos en CICS
 
 Debés definir:
 
-- La **librería LOAD**
-- El **programa**
-- La **transacción**
-- El **MAPSET**
-- Y finalmente **instalar y habilitar todo**
+- Librería LOAD  
+- Programa  
+- Transacción  
+- MAPSET  
+- Archivo VSAM  
+- Instalar y habilitar los recursos  
 
 ---
 
-## 🔹 3.1 Definir Librería
+## 🔹 3.1 Definir Librería LOAD
 
 ```
 CEDA DEFINE LIBRARY(KC03C91) GROUP(KC03C91)
 ```
 
-Completar:
+Parámetros:
 
 ```
 Library : KC03C91
@@ -97,14 +90,16 @@ Dsname  : KC03C91.LOAD
 
 ## 🔹 3.2 Definir Programa
 
+Ejemplo para el programa del menú:
+
 ```
-CEDA DEFINE PROGRAM(TESTME) GROUP(KC03C91)
+CEDA DEFINE PROGRAM(CMENU) GROUP(KC03C91)
 ```
 
 Parámetros:
 
 ```
-Program  : TESTME
+Program  : CMENU
 Group    : KC03C91
 Language : COBOL
 Resident : NO
@@ -116,14 +111,14 @@ Usage    : NORMAL
 ## 🔹 3.3 Definir Transacción
 
 ```
-CEDA DEFINE TRANSACTION(TEST) GROUP(KC03C91)
+CEDA DEFINE TRANSACTION(TPG3) GROUP(KC03C91)
 ```
 
 Parámetros:
 
 ```
-Transaction : TEST
-Program     : TESTME
+Transaction : TPG3
+Program     : CMENU
 Group       : KC03C91
 ```
 
@@ -132,60 +127,77 @@ Group       : KC03C91
 ## 🔹 3.4 Definir MAPSET
 
 ```
-CEDA DEFINE MAPSET(TESTC) GROUP(KC03C91)
+CEDA DEFINE MAPSET(MMENU) GROUP(KC03C91)
 ```
 
 ---
 
-# 🔄 4️⃣ Instalar y Habilitar
+## 🔹 3.5 Definir Archivo VSAM (Nuevo)
+
+Si el menú trabaja con un archivo VSAM (por ejemplo LIBROS generado por CARGAINI), debe definirse:
+
+```
+CEDA DEFINE FILE(LIBROS) GROUP(KC03C91)
+```
+
+El nombre debe coincidir con el DDNAME usado en el programa COBOL.
+
+---
+
+# 🔄 4. Instalar y Habilitar
 
 ```
 CEDA INSTALL GROUP(KC03C91)
 CEMT SET LIBRARY(KC03C91) ENABLED
-CEMT SET PROGRAM(TESTME) NEWCOPY
+CEMT SET PROGRAM(CMENU) NEWCOPY
 ```
 
 ---
 
-# 🧪 5️⃣ Ejecutar la Transacción
+# 🧪 5. Ejecutar la Transacción
 
-En la pantalla inicial de CICS escribir:
+En la pantalla inicial de CICS ingresar:
 
 ```
-TEST
+TPG3
 ```
 
-Si todo está correcto, se cargará el programa COBOL con su pantalla MAPSET.
+Esto abrirá el menú principal del sistema.
+
+---
+
+# 📋 6. Funcionalidad del Menú
+
+Según el segundo documento, el menú permite:
+
+1. Consultar libros  
+2. Listar libros  
+3. Dar de alta un libro  
+4. Salir  
+
+La opción **1** permite consultar registros almacenados en el **archivo VSAM LIBROS**.
+
+Este archivo debe haber sido generado previamente por el programa **CARGAINI**.
 
 ---
 
 # 🛠 Solución de Errores Comunes
 
-Si aparece **NOT FOUND** o error de carga, revisar:
-
-## ✔ Opción 1: Verificar si la librería existe
+### ✔ Verificar si la librería existe
 
 ```
 CEDA VIEW LIBRARY(KC03C91) GROUP(*)
 ```
 
-Si no existe → crearla.
+Si aparece **NOT FOUND**, debe crearse.
 
-## ✔ Opción 2: Crear la librería
+### ✔ Crear librería LOAD
 
 ```
 CEDA DEFINE LIBRARY(KC03C91) GROUP(KC03C91)
 ```
 
-Completar:
-
-```
-Library : KC03C91
-Group   : KC03C91
-Dsname  : KC03C91.LOAD
-```
-
-## ✔ Opción 3: Instalar y habilitar
+### ✔ Instalar y habilitar
 
 ```
 CEDA INSTALL GROUP(KC03C91)
