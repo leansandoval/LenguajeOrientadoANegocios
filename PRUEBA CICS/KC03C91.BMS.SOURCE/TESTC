@@ -1,0 +1,39 @@
+TESTC DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,CTRL=FREEKB,          X
+               TIOAPFX=YES
+TESTC    DFHMDI SIZE=(24,80),LINE=1,COLUMN=1
+         DFHMDF POS=(01,25),LENGTH=30,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL='*** MENU PRINCIPAL TESTC ***'
+         DFHMDF POS=(03,10),LENGTH=50,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='SISTEMA DE GESTION BIBLIOTECARIA'
+         DFHMDF POS=(05,10),LENGTH=40,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='SELECCIONE UNA OPCION:'
+         DFHMDF POS=(07,15),LENGTH=30,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='1. CONSULTAR LIBRO'
+         DFHMDF POS=(08,15),LENGTH=30,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='2. LISTAR LIBROS'
+         DFHMDF POS=(09,15),LENGTH=30,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='3. ALTA DE LIBRO'
+         DFHMDF POS=(10,15),LENGTH=30,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='4. SALIR'
+         DFHMDF POS=(12,15),LENGTH=15,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='OPCION (1-4):'
+OPCION   DFHMDF POS=(12,31),LENGTH=1,                                  X
+               ATTRB=(NORM,UNPROT,IC,FSET),                            X
+               INITIAL=' '
+         DFHMDF POS=(12,33),LENGTH=1,ATTRB=(ASKIP,DRK)
+MENSAJE  DFHMDF POS=(14,10),LENGTH=60,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL=' '
+         DFHMDF POS=(22,10),LENGTH=50,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='PF3=SALIR  ENTER=SELECCIONAR'
+         DFHMSD TYPE=FINAL
+         END

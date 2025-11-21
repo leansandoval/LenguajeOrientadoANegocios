@@ -1,0 +1,118 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. TESTC.
+       AUTHOR. KC03C91.
+      *****************************************************************
+      * PROGRAMA: TESTC - MENU PRINCIPAL CICS                        *
+      * PROPOSITO: Menu interactivo para gestion bibliotecaria       *
+      * TRANSACCION: TEST                                            *
+      *****************************************************************
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+      *
+      * COPYBOOKS CICS
+      *
+       COPY DFHAID.
+       COPY TESTC.
+      *
+      * VARIABLES DE TRABAJO
+      *
+       01  WS-VARIABLES.
+           05 WS-OPCION               PIC X(1).
+           05 WS-MENSAJE              PIC X(60).
+           05 WS-FIRST-TIME           PIC X(1) VALUE 'Y'.
+              88 PRIMERA-VEZ          VALUE 'Y'.
+           05 WS-MSG-SALIDA           PIC X(28)
+              VALUE 'GRACIAS POR USAR EL SISTEMA'.
+
+       PROCEDURE DIVISION.
+      *
+      * LOGICA PRINCIPAL
+      *
+       MAIN-LOGIC.
+           EVALUATE TRUE
+               WHEN EIBCALEN = ZERO
+                   PERFORM ENVIAR-MAPA-INICIAL
+               WHEN EIBAID = DFHCLEAR
+                   PERFORM ENVIAR-MAPA-INICIAL
+               WHEN EIBAID = DFHPF3
+                   PERFORM TERMINAR-TRANSACCION
+               WHEN EIBAID = DFHENTER
+                   PERFORM PROCESAR-OPCION
+               WHEN OTHER
+                   MOVE 'TECLA NO VALIDA. USE ENTER O PF3'
+                        TO WS-MENSAJE
+                   PERFORM ENVIAR-MAPA-CON-DATOS
+           END-EVALUATE.
+
+           EXEC CICS RETURN
+               TRANSID('TEST')
+               COMMAREA(WS-FIRST-TIME)
+               LENGTH(1)
+           END-EXEC.
+      *
+      * ENVIAR MAPA INICIAL
+      *
+       ENVIAR-MAPA-INICIAL.
+           MOVE LOW-VALUES TO TESTCO
+           MOVE SPACES TO MENSAJEO
+
+           EXEC CICS SEND MAP('TESTC')
+               MAPSET('TESTC')
+               ERASE
+               CURSOR
+           END-EXEC.
+      *
+      * PROCESAR OPCION SELECCIONADA
+      *
+       PROCESAR-OPCION.
+           EXEC CICS RECEIVE MAP('TESTC')
+               MAPSET('TESTC')
+           END-EXEC.
+
+           MOVE OPCIONI TO WS-OPCION.
+
+           EVALUATE WS-OPCION
+               WHEN '1'
+                   MOVE 'OPCION 1: CONSULTAR LIBRO (EN DESARROLLO)'
+                        TO WS-MENSAJE
+               WHEN '2'
+                   MOVE 'OPCION 2: LISTAR LIBROS (EN DESARROLLO)'
+                        TO WS-MENSAJE
+               WHEN '3'
+                   MOVE 'OPCION 3: ALTA DE LIBRO (EN DESARROLLO)'
+                        TO WS-MENSAJE
+               WHEN '4'
+                   PERFORM TERMINAR-TRANSACCION
+               WHEN OTHER
+                   MOVE 'OPCION INVALIDA. SELECCIONE 1-4'
+                        TO WS-MENSAJE
+           END-EVALUATE.
+
+           PERFORM ENVIAR-MAPA-CON-DATOS.
+      *
+      * ENVIAR MAPA CON DATOS Y MENSAJE
+      *
+       ENVIAR-MAPA-CON-DATOS.
+           MOVE LOW-VALUES TO TESTCO
+           MOVE WS-MENSAJE TO MENSAJEO
+           MOVE SPACES TO WS-MENSAJE
+           MOVE SPACES TO OPCIONO
+
+           EXEC CICS SEND MAP('TESTC')
+               MAPSET('TESTC')
+               DATAONLY
+               CURSOR
+           END-EXEC.
+      *
+      * TERMINAR TRANSACCION
+      *
+       TERMINAR-TRANSACCION.
+           EXEC CICS SEND TEXT
+               FROM(WS-MSG-SALIDA)
+               LENGTH(28)
+               ERASE
+           END-EXEC.
+
+           EXEC CICS RETURN
+           END-EXEC.

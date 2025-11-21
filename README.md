@@ -1,111 +1,80 @@
 # Lenguaje Orientado a Negocios
 Repositorio de la materia Lenguaje orientado a negocios 2025-2C
 
-# Sistema de Gestión de Biblioteca Universitaria
+## Sistema de Gestión CICS - Mainframe
 
-## 📌 Descripción
-Este proyecto es un sistema completo para la gestión de una biblioteca universitaria, desarrollado en COBOL sobre z/OS, con integración CICS/BMS, DB2 y JCL.  
-Permite la gestión de usuarios, libros, préstamos y reportes, siguiendo una arquitectura modular y orientada a CRUD.
+Este repositorio contiene aplicaciones COBOL para mainframe IBM z/OS con CICS, organizadas en dos módulos principales: gestión de libros y gestión de usuarios.
 
----
+### Estructura del Proyecto
 
-## 📌 Nomenclatura
+#### 📚 LIBROS
+Sistema de gestión de biblioteca con funcionalidades de préstamos y consultas.
 
-### Verbo + Entidad
-- **CREATE** → Alta  
-- **READ** → Consulta sobre un unico registro
-- **UPDATE** → Modificación  
-- **DELETE** → Baja  
-- **LIST** → Listado de todos los registro (agregar parametro para meter filtros si corresponde) 
-- **PROCESS** → Procesos de negocio (préstamos, devoluciones, en general funciones complejas)  
-- **REPORT** → Reportes/estadísticas  
+- **BMS**: Mapas de pantalla CICS
+  - [`CMENU.BMS`](LIBROS/KC03C91.BMS.SOURCE/CMENU.BMS) - Menú principal del sistema
+  
+- **COPYLIB**: Librerías de copias COBOL
+  - [`CONSTANT.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/CONSTANT.CBL) - Constantes del sistema
+  - [`LIBROS.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/LIBROS.CBL) - Estructura de datos de libros
+  - [`LINREP.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/LINREP.CBL) - Líneas de reportes
+  - [`MENSAJES.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/MENSAJES.CBL) - Mensajes del sistema
+  - [`MMENU.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/MMENU.CBL) - Mapas de menú
+  - [`PRESTAMO.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/PRESTAMO.CBL) - Estructura de préstamos
+  - [`USUARIO.CBL`](LIBROS/KC03C91.COBOL.COPYLIB/USUARIO.CBL) - Estructura de usuarios
 
-### Entidades principales
-- **USER** → Usuarios  
-- **BOOK** → Libros  
-- **LOAN** → Préstamos  
-- **REPORT** → Reportes/estadísticas  
+- **SOURCE**: Programas fuente COBOL
+  - [`CARGAINI.CBL`](LIBROS/KC03C91.COBOL.SOURCE/CARGAINI.CBL) - Carga inicial de datos
+  - [`CMENU.CBL`](LIBROS/KC03C91.COBOL.SOURCE/CMENU.CBL) - Programa del menú principal
 
-### Ejemplos de programas
-**Usuarios**
-- `CREATEUSER` → Alta de usuario  
-- `READUSER` → Consulta de usuario  
-- `UPDATEUSER` → Modificación de usuario  
-- `DELETEUSER` → Baja de usuario  
-- `LISTUSERS` → Listado de usuarios  
+- **JCL**: Jobs de control
+- **DATA**: [`DATA.ENTRADA`](LIBROS/DATA.ENTRADA) - Datos de entrada para carga inicial
 
-**Libros**
-- `CREATEBOOK`, `READBOOK`, `UPDATEBOOK`, `DELETEBOOK`, `LISTBOOKS`  
+#### 🧪 PRUEBA CICS
+Entorno de pruebas para aplicaciones CICS.
 
-**Préstamos**
-- `CREATELOAN`, `READLOAN`, `UPDATELOAN`, `DELETELOAN`, `LISTLOANS`  
-- `PROCESSLOAN` → Registrar préstamo  
-- `RETURNLOAN` → Procesar devolución  
-- `LISTLOANS` → Listado de préstamos activos  
+- **BMS**: Mapas de pantalla de prueba
+- **COPYLIB**: Librerías de copias de prueba
+- **SOURCE**: Programas COBOL de prueba
+- **JCL**: Jobs de prueba
+- **LOAD**: Módulos compilados
 
-**Reportes**
-- `REPORTBOOKS` → Libros más prestados  
-- `REPORTUSERS` → Usuarios con préstamos vencidos  
-- `REPORTSTATS` → Estadísticas generales  
-- `REPORTINV` → Inventario por categoría  
+#### 👥 USUARIOS
+Sistema de gestión de usuarios.
 
-### Copybooks
-- `CPY_USER` → Estructura de usuario  
-- `CPY_BOOK` → Estructura de libro  
-- `CPY_LOAN` → Estructura de préstamo  
-- `CPY_CONST` → Constantes del sistema  
-- `CPY_MSGS` → Mensajes de error  
-- `CPY_LINREP` → Layouts de reportes  
+- **DATA**: Archivos de datos de usuarios
+- **BMS**: Mapas de pantalla para usuarios
+- **COPYLIB**: Librerías de copias de usuarios
+- **SOURCE**: Programas COBOL de usuarios
+- **JCL**: Jobs de gestión de usuarios
 
----
+### Tecnologías
 
-## 📌 Estructura de carpetas del proyecto
-```
-/library_managment
-│
-├── /bms_maps                 # Mapas BMS (pantallas interactivas)
-│   ├── USER_ADD_VIEW.bms          # Pantalla de alta de usuario
-│   ├── USER_SHOW_VIEW.bms         # Pantalla de consulta de un usuario
-│   ├── USER_UPDATE_VIEW.bms       # Pantalla de modificación de usuario
-│   ├── USER_DELETE_VIEW.bms       # Pantalla de baja de usuario
-│   ├── USER_LIST_VIEW.bms         # Pantalla de listado de usuarios
-│   └── ...  
-│
-├── /cobol_batch              # Programas COBOL batch
-│   ├── CARGINI.cbl           # Carga inicial de libros
-│   ├── REPORTS.cbl           # Generación de reportes batch
-│   └── ...                   
-│
-├── /cobol_cics               # Programas COBOL CICS interactivos
-│   ├── CREATEUSER.cbl        # Alta de usuario
-│   ├── READUSER.cbl          # Consulta de usuario
-│   ├── UPDATEUSER.cbl        # Modificación de usuario
-│   ├── DELETEUSER.cbl        # Baja de usuario
-│   ├── LISTUSERS.cbl         # Listado de usuarios
-│   └── ...                                
-│
-├── /copybooks                # Copybooks compartidos
-│   ├── CPY_USER.cpy          # Estructura de usuario
-│   └── ...  
-│                 
-├── /jcl                      # JCL para compilación y ejecución
-│   ├── compile_batch.jcl     # Compilación de batch
-│   ├── compile_cics.jcl      # Compilación de CICS
-│   ├── run_batch.jcl         # Ejecución de batch
-│   └── run_cics.jcl          # Ejecución de CICS
-│
-└── /sql_scripts              # Scripts SQL para DB2
-    ├── create_tables.sql     # Creación de tablas
-    ├── populate_data.sql     # Carga inicial de datos
-    └── ...                   
+- **COBOL** - Lenguaje de programación principal
+- **CICS** - Customer Information Control System
+- **BMS** - Basic Mapping Support para pantallas
+- **JCL** - Job Control Language
+- **VSAM** - Virtual Storage Access Method (archivos)
+- **IBM z/OS** - Sistema operativo mainframe
 
-```
+### Convenciones de Nomenclatura
 
-## 📌 Convenciones
-- **Archivos COBOL:** `.cbl`  
-- **Copybooks:** `.cpy`  
-- **Mapas BMS:** `.bms`  
-- **JCL:** `.jcl`  
-- **SQL:** `.sql`  
-- **Reportes:** `.txt` o `.csv` según formato  
+- **KC03C91**: Prefijo para el módulo de libros
+- **KC03CA5**: Prefijo para el módulo de usuarios
+- **.BMS**: Archivos de mapas de pantalla
+- **.CBL**: Archivos fuente COBOL
+- **.JCL**: Archivos de control de trabajos
 
+### Desarrollo
+
+#### Pre-requisitos
+- Acceso a sistema mainframe IBM z/OS
+- CICS Transaction Server
+- Compilador COBOL Enterprise
+- Zowe CLI (opcional, para deployment)
+
+#### Estructura de Datos
+Las estructuras de datos principales se definen en las copylibs:
+- Libros y catálogo
+- Préstamos y devoluciones
+- Usuarios y permisos
+- Mensajes del sistema
