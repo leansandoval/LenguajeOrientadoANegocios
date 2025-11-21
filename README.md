@@ -72,6 +72,71 @@ Sistema de gestión de usuarios.
 - Compilador COBOL Enterprise
 - Zowe CLI (opcional, para deployment)
 
+#### Configuración de Zowe
+
+El proyecto incluye configuración para Zowe CLI que permite la interacción con el mainframe. Archivo de configuración `zowe.config.json`:
+
+```json
+{
+    "$schema": "./zowe.schema.json",
+    "profiles": {
+        "zosmf": {
+            "type": "zosmf",
+            "properties": {
+                "port": 10443
+            },
+            "secure": ["user", "password"]
+        },
+        "tsoZXPLore": {
+            "type": "tso",
+            "properties": {
+                "account": "FB3",
+                "codePage": "1047",
+                "logonProcedure": "IZUFPROC"
+            }
+        },
+        "ssh": {
+            "type": "ssh",
+            "properties": {
+                "port": 22
+            }
+        },
+        "rse": {
+            "type": "rse",
+            "properties": {
+                "port": 6800,
+                "basePath": "rseapi",
+                "protocol": "https"
+            }
+        },
+        "global_base": {
+            "type": "base",
+            "properties": {
+                "host": "ZOS.KCTR.MARIST.EDU",
+                "rejectUnauthorized": false
+            },
+            "secure": ["user", "password"]
+        }
+    },
+    "defaults": {
+        "zosmf": "zosmf",
+        "tso": "tsoZXPLore",
+        "ssh": "ssh",
+        "rse": "rse",
+        "base": "global_base"
+    },
+    "autoStore": true
+}
+```
+
+**Configuración del entorno:**
+- **Host**: ZOS.KCTR.MARIST.EDU
+- **z/OSMF Port**: 10443
+- **SSH Port**: 22
+- **RSE Port**: 6800
+- **TSO Account**: FB3
+- **Code Page**: 1047
+
 #### Estructura de Datos
 Las estructuras de datos principales se definen en las copylibs:
 - Libros y catálogo
