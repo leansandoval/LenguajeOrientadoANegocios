@@ -1,0 +1,57 @@
+UALTAM   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,TIOAPFX=YES,       X
+               STORAGE=AUTO
+UALTAM   DFHMDI SIZE=(24,80),LINE=1,COLUMN=1
+*---- TITULO PRINCIPAL ----
+TITULO   DFHMDF POS=(1,22),LENGTH=35,ATTRB=(BRT,PROT),                 X
+               INITIAL='*** ALTA DE NUEVO USUARIO ***'
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(2,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- INSTRUCCIONES ----
+         DFHMDF POS=(3,15),LENGTH=60,ATTRB=(NORM,PROT),                X
+               INITIAL='Complete los siguientes datos del usuario'
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(4,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- CAMPO ID (SOLO LECTURA - AUTO-GENERADO) ----
+LIDTIT   DFHMDF POS=(6,15),LENGTH=20,ATTRB=(ASKIP,BRT),                X
+               INITIAL='ID asignado:'
+LIDVAL   DFHMDF POS=(6,36),LENGTH=10,ATTRB=(ASKIP,BRT)
+         DFHMDF POS=(6,47),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO NOMBRE ----
+LNOMTIT  DFHMDF POS=(8,15),LENGTH=15,ATTRB=(ASKIP,BRT),                X
+               INITIAL='NOMBRE:'
+LNOMINP  DFHMDF POS=(8,31),LENGTH=20,ATTRB=(UNPROT,FSET)
+         DFHMDF POS=(8,52),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO APELLIDO ----
+LAPETIT  DFHMDF POS=(10,15),LENGTH=15,ATTRB=(ASKIP,BRT),               X
+               INITIAL='APELLIDO:'
+LAPEINP  DFHMDF POS=(10,31),LENGTH=20,ATTRB=(UNPROT,FSET)
+         DFHMDF POS=(10,52),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO EMAIL ----
+LMAILTIT DFHMDF POS=(12,15),LENGTH=15,ATTRB=(ASKIP,BRT),               X
+               INITIAL='EMAIL:'
+LMAILINP DFHMDF POS=(12,31),LENGTH=30,ATTRB=(UNPROT,FSET)
+         DFHMDF POS=(12,62),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO TIPO ----
+LTIPOTIT DFHMDF POS=(14,15),LENGTH=17,ATTRB=(ASKIP,BRT),               X
+               INITIAL='TIPO (A/D/E):'
+LTIPOINP DFHMDF POS=(14,33),LENGTH=1,ATTRB=(UNPROT,FSET)
+         DFHMDF POS=(14,35),LENGTH=1,ATTRB=(ASKIP)
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(16,1),LENGTH=79,ATTRB=(NORM,PROT),                X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- MENSAJE DE ESTADO/ERROR ----
+LMENSAJE DFHMDF POS=(18,10),LENGTH=60,ATTRB=(ASKIP,BRT)
+*---- LINEA SEPARADORA INFERIOR ----
+         DFHMDF POS=(20,1),LENGTH=79,ATTRB=(NORM,PROT),                X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- PIE DE PAGINA CON AYUDA ----
+LPIE     DFHMDF POS=(22,10),LENGTH=60,ATTRB=(ASKIP,BRT),               X
+               INITIAL='PF3=VOLVER | ENTER=GRABAR | CLEAR=LIMPIAR'
+         DFHMSD TYPE=FINAL
+         END

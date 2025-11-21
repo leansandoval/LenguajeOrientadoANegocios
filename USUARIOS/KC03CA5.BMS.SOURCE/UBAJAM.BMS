@@ -1,0 +1,62 @@
+UBAJAM   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,TIOAPFX=YES,       X
+               STORAGE=AUTO,MAPATTS=COLOR
+UBAJAM   DFHMDI SIZE=(24,80),LINE=1,COLUMN=1
+*---- TITULO PRINCIPAL (VERDE para destacar) ----
+TITULO   DFHMDF POS=(1,20),LENGTH=40,ATTRB=(BRT,PROT),                 X
+               INITIAL='*** ELIMINACION DE USUARIO ***',               X
+               COLOR=GREEN
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(2,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- INSTRUCCIONES (TURQUESA para información) ----
+         DFHMDF POS=(3,15),LENGTH=50,ATTRB=(NORM,PROT),                X
+               INITIAL='Ingrese ID y presione ENTER para buscar',      X
+               COLOR=TURQUOISE
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(4,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- CAMPO ID (BUSQUEDA) ----
+MIDTIT   DFHMDF POS=(6,15),LENGTH=20,ATTRB=(ASKIP,BRT),                X
+               INITIAL='ID a eliminar:',COLOR=YELLOW
+MIDINP   DFHMDF POS=(6,36),LENGTH=10,ATTRB=(UNPROT,FSET,IC)
+         DFHMDF POS=(6,47),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO NOMBRE (SOLO LECTURA) ----
+MNOMTIT  DFHMDF POS=(8,15),LENGTH=15,ATTRB=(ASKIP,BRT),                X
+               INITIAL='NOMBRE:'
+MNOMINP  DFHMDF POS=(8,31),LENGTH=20,ATTRB=(PROT)
+         DFHMDF POS=(8,52),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO APELLIDO (SOLO LECTURA) ----
+MAPETIT  DFHMDF POS=(10,15),LENGTH=15,ATTRB=(ASKIP,BRT),               X
+               INITIAL='APELLIDO:'
+MAPEINP  DFHMDF POS=(10,31),LENGTH=20,ATTRB=(PROT)
+         DFHMDF POS=(10,52),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO EMAIL (SOLO LECTURA) ----
+MMAILTIT DFHMDF POS=(12,15),LENGTH=15,ATTRB=(ASKIP,BRT),               X
+               INITIAL='EMAIL:'
+MMAILINP DFHMDF POS=(12,31),LENGTH=30,ATTRB=(PROT)
+         DFHMDF POS=(12,62),LENGTH=1,ATTRB=(ASKIP)
+*---- CAMPO TIPO (SOLO LECTURA) ----
+MTIPOTIT DFHMDF POS=(14,15),LENGTH=17,ATTRB=(ASKIP,BRT),               X
+               INITIAL='TIPO (A/D/E):'
+MTIPOINP DFHMDF POS=(14,33),LENGTH=1,ATTRB=(PROT)
+         DFHMDF POS=(14,35),LENGTH=1,ATTRB=(ASKIP)
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(16,1),LENGTH=79,ATTRB=(NORM,PROT),                X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- MENSAJE DE ADVERTENCIA (ROJO para peligro) ----
+MADVERT  DFHMDF POS=(17,10),LENGTH=60,ATTRB=(ASKIP,BRT,FSET),COLOR=RED
+*---- MENSAJE DE ESTADO/ERROR (DINÁMICO desde COBOL) ----
+MMENSAJE DFHMDF POS=(18,10),LENGTH=60,ATTRB=(ASKIP,BRT)
+*---- LINEA SEPARADORA INFERIOR ----
+         DFHMDF POS=(20,1),LENGTH=79,ATTRB=(NORM,PROT),                X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- PIE DE PAGINA (AZUL para ayuda) ----
+MPIE     DFHMDF POS=(22,10),LENGTH=60,ATTRB=(ASKIP,BRT),               X
+               INITIAL='PF3=VOLVER | ENTER=BUSCAR | PF5=ELIMINAR | PF2=X
+               LIMPIAR',COLOR=BLUE
+         DFHMSD TYPE=FINAL
+         END

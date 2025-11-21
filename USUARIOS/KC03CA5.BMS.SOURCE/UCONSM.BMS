@@ -1,0 +1,52 @@
+UCONSM   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,TIOAPFX=YES,       X
+               STORAGE=AUTO
+UCONSM   DFHMDI SIZE=(24,80),LINE=1,COLUMN=1
+*---- TITULO PRINCIPAL ----
+TITULO   DFHMDF POS=(1,22),LENGTH=35,ATTRB=(BRT,PROT),                 X
+               INITIAL='*** CONSULTA DE USUARIO ***'
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(2,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- INSTRUCCIONES ----
+         DFHMDF POS=(3,15),LENGTH=50,ATTRB=(NORM,PROT),                X
+               INITIAL='Ingrese el ID del usuario a consultar'
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(4,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- CAMPO ID ----
+ETI-ID   DFHMDF POS=(6,15),LENGTH=14,ATTRB=(BRT,PROT),                 X
+               INITIAL='ID A BUSCAR:'
+CAMPOID  DFHMDF POS=(6,31),LENGTH=10,ATTRB=(UNPROT,IC,FSET),           X
+               PICIN='9(10)'
+         DFHMDF POS=(6,42),LENGTH=1,ATTRB=(ASKIP)
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(8,1),LENGTH=79,ATTRB=(NORM,PROT),                 X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- DATOS DEL USUARIO ----
+ETI-NOM  DFHMDF POS=(10,15),LENGTH=10,ATTRB=(BRT,PROT),                X
+               INITIAL='NOMBRE:'
+NOM      DFHMDF POS=(10,31),LENGTH=20,ATTRB=(ASKIP,BRT)
+ETI-APE  DFHMDF POS=(12,15),LENGTH=10,ATTRB=(BRT,PROT),                X
+               INITIAL='APELLIDO:'
+APE      DFHMDF POS=(12,31),LENGTH=20,ATTRB=(ASKIP,BRT)
+ETI-EMA  DFHMDF POS=(14,15),LENGTH=10,ATTRB=(BRT,PROT),                X
+               INITIAL='EMAIL:'
+EMA      DFHMDF POS=(14,31),LENGTH=35,ATTRB=(ASKIP,BRT)
+ETI-TIP  DFHMDF POS=(16,15),LENGTH=10,ATTRB=(BRT,PROT),                X
+               INITIAL='TIPO:'
+TIP      DFHMDF POS=(16,31),LENGTH=30,ATTRB=(ASKIP,BRT)
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(18,1),LENGTH=79,ATTRB=(NORM,PROT),                X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- MENSAJE DE ESTADO ----
+MENSAJE  DFHMDF POS=(20,10),LENGTH=60,ATTRB=(ASKIP,BRT)
+*---- PIE DE PAGINA ----
+PIE      DFHMDF POS=(22,10),LENGTH=60,ATTRB=(ASKIP,BRT),               X
+               INITIAL='PF3=VOLVER  |  ENTER=CONSULTAR  |  CLEAR=LIMPIAX
+               R'
+         DFHMSD TYPE=FINAL
+         END

@@ -1,0 +1,80 @@
+UMENUM   DFHMSD TYPE=&SYSPARM,MODE=INOUT,LANG=COBOL,CTRL=FREEKB,       X
+               TIOAPFX=YES,MAPATTS=COLOR
+UMENUM   DFHMDI SIZE=(24,80),LINE=1,COLUMN=1
+*---- TITULO PRINCIPAL (VERDE para destacar) ----
+         DFHMDF POS=(01,20),LENGTH=40,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL='*** MENU PRINCIPAL USUARIOS ***',              X
+               COLOR=GREEN
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(02,01),LENGTH=79,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- SUBTITULO (TURQUESA para información) ----
+         DFHMDF POS=(03,15),LENGTH=50,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL='SISTEMA DE GESTION DE USUARIOS (VSAM)',        X
+               COLOR=TURQUOISE
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(04,01),LENGTH=79,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- OPCIONES DEL MENU ----
+         DFHMDF POS=(06,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='1. CARGAR NUEVO USUARIO'
+         DFHMDF POS=(07,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='2. CONSULTAR USUARIO POR ID'
+         DFHMDF POS=(08,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='3. MODIFICAR USUARIO EXISTENTE'
+         DFHMDF POS=(09,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='4. ELIMINAR USUARIO'
+         DFHMDF POS=(10,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='5. LISTAR TODOS LOS USUARIOS'
+         DFHMDF POS=(11,20),LENGTH=35,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='6. SALIR'
+*---- LINEA SEPARADORA ----
+         DFHMDF POS=(13,01),LENGTH=79,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- CAMPO DE ENTRADA (AMARILLO para destacar) ----
+         DFHMDF POS=(15,20),LENGTH=15,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL='OPCION (1-6):',                                X
+               COLOR=YELLOW
+OPCION   DFHMDF POS=(15,36),LENGTH=1,                                  X
+               ATTRB=(NORM,UNPROT,IC,FSET),                            X
+               INITIAL=' '
+         DFHMDF POS=(15,38),LENGTH=1,ATTRB=(ASKIP,DRK)
+*---- MENSAJE DE ERROR/INFO (AMARILLO para advertencias) ----
+MENSAJE  DFHMDF POS=(17,10),LENGTH=60,                                 X
+               ATTRB=(BRT,PROT),                                       X
+               INITIAL=' ',                                            X
+               COLOR=YELLOW
+*---- LINEA SEPARADORA INFERIOR ----
+         DFHMDF POS=(20,01),LENGTH=79,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='-----------------------------------------------X
+               --------------------------------'
+*---- AYUDA DE TECLAS (AZUL para ayuda) ----
+         DFHMDF POS=(22,15),LENGTH=50,                                 X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='PF3=SALIR | ENTER=SELECCIONAR',                X
+               COLOR=BLUE
+*---- FOOTER ----
+         DFHMDF POS=(24,1),LENGTH=39,                                  X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='Lenguaje Orientado a Negocios - 2C 2025'
+         DFHMDF POS=(24,73),LENGTH=7,                                  X
+               ATTRB=(NORM,PROT),                                      X
+               INITIAL='Grupo 3'
+         DFHMSD TYPE=FINAL
+         END
