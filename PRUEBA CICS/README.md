@@ -35,13 +35,13 @@ Los siguientes pasos están basados en la guía provista en el PDF original.
 1. Ejecutar el JCL:
 
    ```text
-   //TESTC  -> compila el MAPSET
+   TESTC  -> compila el MAPSET
    ```
 
 2. Ejecutar el JCL:
 
    ```text
-   //CMPTEST -> compila el programa COBOL que usa el mapa
+   CMPTEST -> compila el programa COBOL que usa el mapa
    ```
 
 Al finalizar, deberías tener **dos miembros en la librería `.LOAD`**:
@@ -193,8 +193,3 @@ CEMT SET LIBRARY(KC03C91) ENABLED
 ```
 
 ---
-
-# 📄 Créditos
-
-Guía basada en el documento **GUIA CICS.pdf** provisto en este repositorio.
-
