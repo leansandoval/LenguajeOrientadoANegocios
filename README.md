@@ -1,5 +1,27 @@
 # Lenguaje Orientado a Negocios
-Repositorio de la materia Lenguaje orientado a negocios 2025-2C
+Repositorio de la materia Lenguaje Orientado a Negocios (3677) UNLaM - Segundo Cuatrimestre 2025.
+
+## Información de la Asignatura
+* **Carrera**: Ingeniería en Informática
+* **Asignatura**: Lenguaje Orientado a Negocios (3677)
+* **Cuatrimestre**: Segundo Cuatrimestre
+* **Año**: 2025
+* **Grupo**: 3
+
+## Trayecto - Gestión y Complementarias
+
+* **Año académico**: Quinto Año - Primer Cuatrimestre
+* **Responsable / Jefe de catedra**: Gonzalez, Adrian Gabriel
+* **Carga horaria semanal**: 4 hs
+* **Carga horaria total**: 64 hs
+* **Modalidad**: Virtual
+* **Correlativas anteriores**
+  * Programación Avanzada (3652)
+  * Arquitectura de Sistemas Software (3653)
+  * Gestión de Proyectos (3661)
+
+## Docentes
+* Gonzalez, Adrian Gabriel
 
 ## Sistema de Gestión CICS - Mainframe
 
@@ -143,3 +165,4 @@ Las estructuras de datos principales se definen en las copylibs:
 - Préstamos y devoluciones
 - Usuarios y permisos
 - Mensajes del sistema
+
