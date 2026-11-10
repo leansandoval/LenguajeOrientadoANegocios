@@ -1,5 +1,5 @@
 # Lenguaje Orientado a Negocios
-Repositorio de la materia Lenguaje Orientado a Negocios (3677) UNLaM - Segundo Cuatrimestre 2025.
+Repositorio de la materia Lenguaje Orientado a Negocios (3677) - Segundo Cuatrimestre 2025 - UNLaM.
 
 ## Información de la Asignatura
 * **Carrera**: Ingeniería en Informática
