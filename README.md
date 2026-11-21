@@ -1,5 +1,5 @@
 # Lenguaje Orientado a Negocios
-Repositorio de la materia Lenguaje Orientado a Negocios (3677) - Segundo Cuatrimestre 2025 - UNLaM.
+Repositorio de la materia Lenguaje Orientado a Negocios (3677) - 2C 2025 - UNLaM.
 
 ## Información de la Asignatura
 * **Carrera**: Ingeniería en Informática
@@ -22,6 +22,58 @@ Repositorio de la materia Lenguaje Orientado a Negocios (3677) - Segundo Cuatrim
 
 ## Docentes
 * Gonzalez, Adrian Gabriel
+
+## Unidad 1
+<img width="700" alt="Diferentes métodos de acceso al Mainframe" src="https://github.com/user-attachments/assets/8043a875-2446-4e4b-bef1-49d622c12480" />
+
+<img width="700" alt="VSAM - Version I" src="https://github.com/user-attachments/assets/f33da987-f7dd-4ad4-a482-094c301eae22" />
+
+<img width="700" alt="VSAM - Version II" src="https://github.com/user-attachments/assets/94d6578f-3248-4d60-8cf0-581a3572d67d" />
+
+* Informática corporativa.
+* Introducción al Entorno Mainframe.
+* Infraestructura Mainframe.
+
+## Unidad 2
+<img width="700" alt="Diagramacion Estructurada - Parte I" src="https://github.com/user-attachments/assets/37552a74-5ec5-41d6-bfd9-e433397953ed" />
+
+<img width="700" alt="Diagramacion Estructurada - Parte II" src="https://github.com/user-attachments/assets/4c7ee8ea-fefb-40a6-a1dd-5c9f7ed97f3c" />
+
+* Conceptos de diagramación estructurada
+* Pseudo Código.
+
+## Unidad 3
+<img width="700" alt="Introducción a COBOL - Parte I" src="https://github.com/user-attachments/assets/2f5617c2-8ced-4402-8681-7063ed809aee" />
+
+<img width="700" alt="Introducción a COBOL - Parte II" src="https://github.com/user-attachments/assets/6b7c553d-0469-4d91-a865-85fae26417ad" />
+
+* Lenguaje COBOL.
+* Características, tipos de datos.
+* Estructura y Sintaxis.
+
+## Unidad 4
+<img width="700" alt="¿Que es JCL?" src="https://github.com/user-attachments/assets/94fde789-a399-4f46-a306-bc558c1db401" />
+
+<img width="700" alt="JCL vs COBOL" src="https://github.com/user-attachments/assets/544b09d3-0702-4cdf-9005-a6b9781a0320" />
+
+<img width="700" alt="Mapa JCL a COBOL" src="https://www.in-com.com/wp-content/uploads/2025/04/map-jcl-to-cobol.avif" />
+
+<img width="700" alt="Manejo de Archivos" src="https://github.com/user-attachments/assets/bd8c8ecb-cdf5-4183-a834-159f58ec5e6b" />
+
+* Gestión de datos y archivos COBOL.
+
+## Unidad 5
+* Normas y buenas prácticas de codificación.
+
+## Unidad 6
+<img width="700" alt="Introducción a DB2" src="https://github.com/user-attachments/assets/267ed117-d57d-4b25-9cb5-b434282f3a56" />
+
+* Manejo de bases de datos relacionales (DB2).
+
+# Unidad 7
+<img width="700" alt="CICS" src="https://github.com/user-attachments/assets/287157dc-b314-456e-8b2f-ebaac41bb7bb" />
+
+* CICS - COBOL interactivo. 
 
 ## Sistema de Gestión CICS - Mainframe
 
