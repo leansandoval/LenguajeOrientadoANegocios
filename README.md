@@ -16,6 +16,7 @@
 - [Información de la Asignatura](#informacion-de-la-asignatura)
 - [Trayecto - Gestión y Complementarias](#trayecto)
 - [Docentes](#docentes)
+- [Integrantes del Grupo](#integrantes)
 - [Unidad 1 - Entorno Mainframe](#unidad-1)
 - [Unidad 2 - Diagramación Estructurada](#unidad-2)
 - [Unidad 3 - Lenguaje COBOL](#unidad-3)
@@ -52,6 +53,19 @@
 <a id="docentes"></a>
 ## 👨‍🏫 Docentes
 * Gonzalez, Adrian Gabriel
+
+<a id="integrantes"></a>
+## 👥 Integrantes
+<div align="center">
+
+| Apellido/s | Nombre/s |
+| :--: | :--: |
+| **Baez** | Matías Nahuel |
+| **Berrios Lima** | Cristian Raul |
+| **Ferreira** | Pablo Martin |
+| **Sandoval Vasquez** | Juan Leandro |
+
+</div>
 
 ---
 
